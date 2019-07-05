@@ -28,26 +28,15 @@ class PromoPage(BasePage):
 		product_price = self.browser.find_element(*PromoPageLocators.PRODUCT_PRICE)
 		
 		product_price_text = product_price.text.split(' ')[0]
-		basket_mini_text = basket_mini.text.split(' ')[3]
-		
-		#print(f'product_price_text: {product_price_text}')
-		#print(f"product_price_text: {product_price.text}")
-		#print(f'basket_mini_text: {basket_mini_text}')
-		#time.sleep(100)	
+		basket_mini_text = basket_mini.text.split(' ')[3]	
 		
 		assert (product_price_text == basket_mini_text), "The cost of basket should coincides with product price"
-
-	
-
-		
-		#assert (product_name.text in alert_success.text), "The name of the product in the message must match the added product"
-
-	
 	
 	
 	def should_be_promo_in_url(self):
 		# реализуйте проверку на корректный url адрес
-		assert ("?promo=newYear" in self.browser.current_url), "Verifying that the URL address contains ?promo=newYear"
+		assert ("?promo=newYear" in self.browser.current_url), "Verifying that the URL address contains ?promo="
+	
 	
 	def should_be_add_basket_button(self):
 		add_basket_btn = self.browser.find_element(*PromoPageLocators.ADD_BUTTON)
@@ -58,6 +47,7 @@ class PromoPage(BasePage):
 		add_basket_btn = self.browser.find_element(*PromoPageLocators.ADD_BUTTON)
 		add_basket_btn.click()
 		time.sleep(1)
+
 
 	def solve_quiz_and_get_code(self):
 		alert = self.browser.switch_to.alert
