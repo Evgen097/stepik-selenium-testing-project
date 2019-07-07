@@ -32,11 +32,11 @@ class PromoPage(BasePage):
 
 	def is_disappeared(self, how, what, timeout=4):
 		try:
-			print('----------------------------------------')
-			print('----------------------------------------')
-			print(how)
-			print(what)
-			print(timeout)
+			#print('----------------------------------------')
+			#print('----------------------------------------')
+			#print(how)
+			#print(what)
+			#print(timeout)
 			WebDriverWait(self.browser, timeout, 1, TimeoutException).until_not(EC.presence_of_element_located((how, what)))
 		except TimeoutException:
 			return False
@@ -50,10 +50,6 @@ class PromoPage(BasePage):
 	def should_is_disappeared_the_success_message(self):
 		assert self.is_disappeared(*PromoPageLocators.ALERT_SUCCESS), "Проверяем, что нет сообщения об успехе с помощью is_disappeared"	
 	
-	
-	
-	
-
 
 	def should_be_success_massage_after_add_basket(self):
 		alert_success = self.browser.find_element(*PromoPageLocators.ALERT_SUCCESS)

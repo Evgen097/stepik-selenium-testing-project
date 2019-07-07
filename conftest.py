@@ -15,7 +15,9 @@ def browser(request):
 	print(F"Check for language: {language}")
 	
 	options = Options()
-	browser = webdriver.Firefox(options=options)
+	fp = webdriver.FirefoxProfile()
+	fp.set_preference("intl.accept_languages", language)
+	browser = webdriver.Firefox(firefox_profile=fp)
 	
 	#opt = webdriver.ChromeOptions()
 	#opt.add_experimental_option('w3c', False)
