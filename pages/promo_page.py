@@ -13,7 +13,8 @@ from selenium.common.exceptions import NoAlertPresentException # в начале
 from .base_page import BasePage
 from .locators import PromoPageLocators
 
-
+from .cart_page import CartPage
+from .locators import CartPageLocators
 
 
 class PromoPage(BasePage):
@@ -122,7 +123,33 @@ class PromoPage(BasePage):
 
 
 
+	def should_be_cart_page(self):
+		try:
+			cart_page = CartPage(browser=self.browser, url=self.browser.current_url)
+			cart_page.should_be_basket_url()
+		except AssertionError as error:
+			print(error)
+			raise ValueError('should move from the main page to the cart page after check url')
+			
+						
+	def should_be_cart_basket_empty(self):
+		try:
+			cart_page = CartPage(browser=self.browser, url=self.browser.current_url)
+			cart_page.should_be_the_basket_empty()
+		except AssertionError as error:
+			print(error)
+			raise ValueError('should move from the main page to the cart page after what basket is empty')
+					
+			
+	def should_be_text_that_cart_is_empty(self):
+		try:
+			cart_page = CartPage(browser=self.browser, url=self.browser.current_url)
+			cart_page.should_be_text_that_cart_is_empty()
 
+		except AssertionError as error:
+			print(error)
+			raise ValueError('should move from the main page to the cart page after check text that cart is empty')
+			
 
 
 

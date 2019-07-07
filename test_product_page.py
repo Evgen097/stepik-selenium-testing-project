@@ -108,6 +108,22 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
 	time.sleep(1)
 
 
+def test_guest_cant_see_product_in_cart_opened_from_product_page(browser):
+	#Гость открывает главную страницу 
+	#Переходит в корзину по кнопке в шапке сайта
+	#Ожидаем, что в корзине нет товаров
+	#Ожидаем, что есть текст о том что корзина пуста 	
+	link = "http://selenium1py.pythonanywhere.com"	
+	
+	page = PromoPage(browser, link)
+	page.open()
+	time.sleep(1)
+	
+	basket_page = page.go_to_cart_page()
+	time.sleep(1)
+	page.should_be_cart_page()
+	page.should_be_cart_basket_empty()
+	page.should_be_text_that_cart_is_empty()
 
 
 
